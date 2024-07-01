@@ -5,6 +5,7 @@ const placesRoutes = require("./routes/places-routes");
 const usersRoutes = require("./routes/users-routes");
 const HttpError = require("./models/http-error");
 const mongoose = require("mongoose");
+const { MONGO_USER, MONGO_PASSWORD } = require("./util/api-key");
 
 const app = express();
 
@@ -29,11 +30,11 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    "mongodb+srv://<username>:<password>@cluster0.ac7m6ol.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+    `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@cluster0.ac7m6ol.mongodb.net/places?retryWrites=true&w=majority&appName=Cluster0`
   )
   .then(() => {
     app.listen(8000);
   })
   .catch((err) => {
-    console.log("err ", err);
+    console.log("err ", err, MONGO_USER, MONGO_PASSWORD);
   });
