@@ -1,24 +1,9 @@
-const uuid = require("uuid");
 const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const getCoordsForAddress = require("../util/location");
 const Place = require("../models/places");
 const User = require("../models/users");
 const { default: mongoose } = require("mongoose");
-
-let DUMMY_PLACES = [
-  {
-    id: "p1",
-    title: "EMPIRE STATE BUILDING",
-    description: "One of the most famouse sky scrapper in the world",
-    address: "Fifth Avenue (351) 34th Street (west, 20)",
-    locations: {
-      lat: 40.748817,
-      lng: -73.985428,
-    },
-    creator: "u1",
-  },
-];
 
 const getPlaceById = async (req, res, next) => {
   const placeId = req.params.pid;
