@@ -126,7 +126,14 @@ const updatePlaceById = async (req, res, next) => {
     updatedPlace = await Place.findById(placeId);
   } catch (err) {
     const error = new HttpError("Something went wrong", 500);
+    return next(error);
+  }
 
+  if (updatedPlace.creator.toString() !== req.userData.userId) {
+    const error = new HttpError(
+      "You are not allowed to update this place",
+      401
+    );
     return next(error);
   }
 
