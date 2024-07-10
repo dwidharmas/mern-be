@@ -131,4 +131,5 @@ dist
 
 package-lock.json
 api-key.js
+nodemon.json
 uploads/images/*
